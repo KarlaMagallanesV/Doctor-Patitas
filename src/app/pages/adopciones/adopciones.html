@@ -1,0 +1,16 @@
+<section class="adopciones">
+    <div class="header">
+        <h1>Adopciones</h1>
+        <p>Encuentra a tu compañero ideal y dale un hogar lleno de amor ❤️</p>
+    </div>
+
+    <div class="pets-grid">
+        <div class="pet-card" *ngFor="let pet of pets">
+            <img [src]="pet.foto" [alt]="pet.nombre">
+            <h3>{{ pet.nombre }}</h3>
+            <p><strong>Edad:</strong> {{ pet.edad }}</p>
+            <p><strong>Raza:</strong> {{ pet.raza }}</p>
+            <button class="btn">Adoptar</button>
+        </div>
+    </div>
+</section>
