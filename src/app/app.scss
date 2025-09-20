@@ -1,47 +1,204 @@
+// Variables mejoradas
+$primary-gradient: linear-gradient(135deg, #2196f3 0%, #21cbf3 50%, #2196f3 100%);
+$secondary-gradient: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+$emergency-color: #ff4444;
+$white: #ffffff;
+$light-bg: linear-gradient(135deg, #e8f5e8 0%, #e1f5fe 100%);
+$text-dark: #2c3e50;
+$shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Mixins para reutilización
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin floating-element {
+    animation: float 3s ease-in-out infinite;
+
+    &:hover {
+        animation: float 2s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+    }
+}
+
+// Layout principal
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #f9f9f9;
+    background: $light-bg;
+    position: relative;
+    overflow-x: hidden;
 
-    .header {
-        width: 100%;
-        background: #ff9800;
-        color: #fff;
-        padding: 0.8rem 1.5rem;
+    // Elementos decorativos de fondo
+    &::before,
+    &::after {
+        content: '';
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(33, 150, 243, 0.05);
+        filter: blur(60px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &::before {
+        top: -150px;
+        right: -150px;
+    }
+
+    &::after {
+        bottom: -150px;
+        left: -150px;
+        background: rgba(76, 175, 80, 0.05);
+    }
+}
+
+// Header mejorado
+.header {
+    width: 95%;
+    background: $primary-gradient;
+    color: $white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: $shadow;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba($white, 0.2);
+    transition: $transition;
+
+    // Efecto al hacer scroll
+    &.scrolled {
+        padding: 0.7rem 2rem;
+        backdrop-filter: blur(16px);
+        background: linear-gradient(135deg,
+                rgba(33, 150, 243, 0.95) 0%,
+                rgba(33, 203, 243, 0.95) 50%,
+                rgba(33, 150, 243, 0.95) 100%);
+
+        .logo {
+            font-size: 1.5rem;
+        }
+    }
+
+    // Logo con mejoras
+    .logo {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        gap: 0.5rem;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: -0.5px;
+        cursor: pointer;
+        transition: $transition;
+        @include floating-element;
 
-        nav {
-            ul {
-                display: flex;
-                gap: 1rem;
-                list-style: none;
-                margin: 0;
-                padding: 0;
+        .logo-paw {
+            font-size: 2rem;
+            transition: $transition;
+        }
 
-                li {
-                    a {
-                        padding: 0.6rem 1rem;
-                        color: #fff;
-                        text-decoration: none;
-                        font-weight: 500;
-                        border-radius: 4px;
-                        transition: background 0.3s ease;
+        &:hover {
+            transform: scale(1.05);
 
-                        &:hover {
-                            background: rgba(255, 255, 255, 0.2);
+            .logo-paw {
+                transform: rotate(15deg) scale(1.2);
+            }
+        }
+    }
+
+    // Navegación principal
+    nav {
+        ul {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            background: rgba($white, 0.15);
+            padding: 0.6rem;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba($white, 0.2);
+            margin: 0;
+
+            li {
+                position: relative;
+
+                a {
+                    padding: 0.8rem 1.5rem;
+                    color: $white;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 0.95rem;
+                    border-radius: 20px;
+                    transition: $transition;
+                    position: relative;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    // Iconos para cada enlace
+                    &[routerLink="/"]::before {
+                        content: '🏠';
+                    }
+
+                    &[routerLink="/adopciones"]::before {
+                        content: '🐕';
+                    }
+
+                    &[routerLink="/pet-shop"]::before {
+                        content: '🛒';
+                    }
+
+                    &[routerLink="/sobre-nosotros"]::before {
+                        content: 'ℹ️';
+                    }
+
+                    &[routerLink="/contacto"]::before {
+                        content: '📞';
+                    }
+
+                    // Efecto de brillo al hover
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba($white, 0.3), transparent);
+                        transition: left 0.7s;
+                    }
+
+                    &:hover {
+                        background: rgba($white, 0.25);
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+                        &::after {
+                            left: 100%;
                         }
+                    }
 
-                        &.active {
-                            background: rgba(0, 0, 0, 0.25);
-                            font-weight: bold;
+                    &.active {
+                        background: rgba($white, 0.3);
+                        font-weight: 700;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                        border: 1px solid rgba($white, 0.4);
+
+                        &::before {
+                            transform: scale(1.2);
                         }
                     }
                 }
@@ -49,8 +206,285 @@
         }
     }
 
-    .content {
-        flex: 1;
-        padding: 6rem 2rem 2rem; // 👈 deja espacio para la cabecera fija
+    // Botón de menú móvil
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: $white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        transition: $transition;
+
+        &:hover {
+            background: rgba($white, 0.2);
+        }
     }
+
+    // Responsive: diseño móvil
+    @media (max-width: 968px) {
+        padding: 1rem;
+
+        nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(33, 150, 243, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            transition: clip-path 0.4s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+            &.open {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            ul {
+                flex-direction: column;
+                background: transparent;
+                border: none;
+                backdrop-filter: none;
+                padding: 0;
+                gap: 0.2rem;
+
+                li {
+                    width: 100%;
+
+                    a {
+                        border-radius: 10px;
+                        justify-content: flex-start;
+                        padding: 1rem 1.5rem;
+
+                        &.active {
+                            background: rgba($white, 0.25);
+                        }
+                    }
+                }
+            }
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+    }
+}
+
+// Contenido principal
+.content {
+    flex: 1;
+    padding: 8rem 2rem 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.6s ease-out;
+
+    @media (max-width: 768px) {
+        padding: 6rem 1rem 1rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 5rem 0.5rem 1rem;
+    }
+}
+
+// Footer para layout completo
+.footer {
+    background: $primary-gradient;
+    color: $white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            @include floating-element;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+
+            a {
+                color: $white;
+                text-decoration: none;
+                transition: $transition;
+
+                &:hover {
+                    text-decoration: underline;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+            a {
+                @include flex-center;
+                width: 40px;
+                height: 40px;
+                background: rgba($white, 0.1);
+                border-radius: 50%;
+                color: $white;
+                transition: $transition;
+
+                &:hover {
+                    background: rgba($white, 0.3);
+                    transform: translateY(-3px);
+                }
+            }
+        }
+
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 1.5rem;
+
+        .footer-links {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+}
+
+// Botón de emergencia flotante
+.emergency-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: $emergency-color;
+    color: $white;
+    @include flex-center;
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+    z-index: 999;
+    cursor: pointer;
+    transition: $transition;
+    animation: pulse 2s infinite;
+
+    &:hover {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 8px 25px rgba(255, 68, 68, 0.6);
+    }
+
+    i {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+// Animaciones
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Utilidades para Angular Router
+.router-active {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background: $white;
+        border-radius: 50%;
+        animation: bounce 0.5s ease-in-out alternate infinite;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(-3px);
+    }
+}
+
+// Mejoras para el estado activo del router
+[routerLink].active {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        transform: scale(1.2) !important;
+    }
+}
+
+// Efectos de carga para componentes
+.app-loading {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.app-loaded {
+    opacity: 1;
+    transform: translateY(0);
 }

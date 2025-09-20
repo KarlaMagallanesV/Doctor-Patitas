@@ -1,16 +1,392 @@
 <section class="adopciones">
-    <div class="header">
-        <h1>Adopciones</h1>
-        <p>Encuentra a tu compañero ideal y dale un hogar lleno de amor ❤️</p>
+    <div class="adopciones-background">
+        <div class="floating-hearts">
+            <div class="heart heart-1">💕</div>
+            <div class="heart heart-2">🐾</div>
+            <div class="heart heart-3">❤️</div>
+            <div class="heart heart-4">🏠</div>
+        </div>
     </div>
 
-    <div class="pets-grid">
-        <div class="pet-card" *ngFor="let pet of pets">
-            <img [src]="pet.foto" [alt]="pet.nombre">
-            <h3>{{ pet.nombre }}</h3>
-            <p><strong>Edad:</strong> {{ pet.edad }}</p>
-            <p><strong>Raza:</strong> {{ pet.raza }}</p>
-            <button class="btn">Adoptar</button>
+    <div class="container">
+        <div class="section-header">
+            <div class="header-badge">
+                <span class="badge-icon">🏠</span>
+                <span class="badge-text">Adopción Responsable</span>
+            </div>
+
+            <h1 class="section-title">
+                Dale una <span class="highlight-text">segunda oportunidad</span>
+                a quien más lo necesita
+            </h1>
+
+            <p class="section-description">
+                Cada mascota merece un hogar lleno de amor. Nuestros amigos peludos han sido
+                cuidadosamente evaluados por nuestro equipo veterinario y están listos para
+                convertirse en parte de tu familia.
+            </p>
+
+            <div class="adoption-stats">
+                <div class="stat">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Adopciones exitosas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Mascotas disponibles</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Seguimiento post-adopción</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i>
+                    Todas
+                </button>
+                <button class="filter-btn" data-filter="perros">
+                    <i class="fas fa-dog"></i>
+                    Perros
+                </button>
+                <button class="filter-btn" data-filter="gatos">
+                    <i class="fas fa-cat"></i>
+                    Gatos
+                </button>
+            </div>
+        </div>
+
+        <div class="pets-grid">
+            <!-- Perros disponibles -->
+            <div class="pet-card" data-category="perros">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Max">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Max</h3>
+                        <span class="pet-gender male">♂</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>2 años</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Labrador Mix</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>25 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Juguetón</span>
+                        <span class="trait">Cariñoso</span>
+                        <span class="trait">Entrenado</span>
+                    </div>
+                    <p class="pet-description">
+                        Max es un perro muy sociable que ama jugar y recibir cariño. Ideal para familias activas.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Max
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gata disponible -->
+            <div class="pet-card" data-category="gatos">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Luna">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Luna</h3>
+                        <span class="pet-gender female">♀</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>1 año</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Persa</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>4 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Tranquila</span>
+                        <span class="trait">Independiente</span>
+                        <span class="trait">Vacunada</span>
+                    </div>
+                    <p class="pet-description">
+                        Luna es una gatita muy elegante y cariñosa. Perfecta para quienes buscan compañía tranquila.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Luna
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perro disponible -->
+            <div class="pet-card" data-category="perros">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Rocky">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Rocky</h3>
+                        <span class="pet-gender male">♂</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>3 años</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Pastor Alemán</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>30 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Protector</span>
+                        <span class="trait">Leal</span>
+                        <span class="trait">Inteligente</span>
+                    </div>
+                    <p class="pet-description">
+                        Rocky es un perro muy inteligente y protector. Ideal para familias que buscan un guardián leal.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Rocky
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gato disponible -->
+            <div class="pet-card" data-category="gatos">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Milo">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Milo</h3>
+                        <span class="pet-gender male">♂</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>6 meses</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Mestizo</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>2 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Juguetón</span>
+                        <span class="trait">Curioso</span>
+                        <span class="trait">Sociable</span>
+                    </div>
+                    <p class="pet-description">
+                        Milo es un gatito muy juguetón y curioso. Le encanta explorar y jugar con todo lo que encuentra.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Milo
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perra disponible -->
+            <div class="pet-card" data-category="perros">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Bella">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Bella</h3>
+                        <span class="pet-gender female">♀</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>4 años</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Golden Retriever</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>28 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Cariñosa</span>
+                        <span class="trait">Paciente</span>
+                        <span class="trait">Familiar</span>
+                    </div>
+                    <p class="pet-description">
+                        Bella es perfecta para familias con niños. Es muy paciente y cariñosa con todos los miembros de
+                        la familia.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Bella
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gata disponible -->
+            <div class="pet-card" data-category="gatos">
+                <div class="pet-image">
+                    <img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Nala">
+                    <div class="pet-status">Disponible</div>
+                    <div class="pet-favorite">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-header">
+                        <h3 class="pet-name">Nala</h3>
+                        <span class="pet-gender female">♀</span>
+                    </div>
+                    <div class="pet-details">
+                        <div class="detail">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>2 años</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-paw"></i>
+                            <span>Siamés</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-weight"></i>
+                            <span>3.5 kg</span>
+                        </div>
+                    </div>
+                    <div class="pet-traits">
+                        <span class="trait">Elegante</span>
+                        <span class="trait">Vocal</span>
+                        <span class="trait">Cariñosa</span>
+                    </div>
+                    <p class="pet-description">
+                        Nala es una gata siamés muy comunicativa y elegante. Le gusta "conversar" con sus humanos
+                        favoritos.
+                    </p>
+                    <div class="pet-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Adoptar a Nala
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Más info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-info">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Proceso de Adopción</h3>
+                <p>Evaluación previa, visita al hogar y seguimiento post-adopción para garantizar el bienestar.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Adopción Responsable</h3>
+                <p>Todas nuestras mascotas están esterilizadas, vacunadas y con chip de identificación.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Soporte Continuo</h3>
+                <p>Te acompañamos en todo el proceso de adaptación con consejos veterinarios gratuitos.</p>
+            </div>
         </div>
     </div>
 </section>
